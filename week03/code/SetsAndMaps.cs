@@ -28,22 +28,19 @@ public static class SetsAndMaps
 
         foreach (string word in words)
         {
-            // The constraint guarantees no duplicates, so words like 'aa' 
-            // will never have a symmetric pair in the list.
+            
             if (word[0] == word[1])
             {
                 continue;
             }
 
-            // Reverse the two-letter word
+           
             string reversedWord = "" + word[1] + word[0];
 
-            // Check if the reversed word exists in the set (O(1) average time)
+           
             if (wordSet.Contains(reversedWord))
             {
-                // Add the pair to the results list. We add the pair in a consistent 
-                // order (e.g., alphabetically) to avoid duplicate entries when processing 
-                // both 'am' and 'ma'. The string comparison is O(1) as strings are fixed length.
+                
                 if (string.CompareOrdinal(word, reversedWord) < 0)
                 {
                     pairs.Add($"{word} & {reversedWord}");
@@ -161,7 +158,7 @@ public static class SetsAndMaps
             return false;      
         }
         freqDict[letter]--;
-        
+
         if (freqDict[letter] < 0)
         {
             return false;
