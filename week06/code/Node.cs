@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class Node
 {
     public int Data { get; set; }
@@ -11,9 +13,13 @@ public class Node
 
     public void Insert(int value)
     {
-        // TODO Start Problem 1
 
-        if (value < Data)
+        // TODO Start Problem 1
+        if (value == Data)
+        {
+            return;
+        }
+        if ( value < Data)
         {
             // Insert to the left
             if (Left is null)
@@ -29,17 +35,36 @@ public class Node
             else
                 Right.Insert(value);
         }
-    }
+      }
 
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        return false;
+        if(value == Data)
+        {
+            return true;
+        }
+        else if (value < Data)
+        {
+            return Left != null && Left.Contains(value);
+        }
+        else
+        {
+            return Right != null && Right.Contains(value);
+        }
+    
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+
+        if( Left == null && Right == null)
+        {
+            return 1;  
+        }
+        int leftHight = (Left != null) ? Left.GetHeight() : 0;
+        int rightHight = (Right != null)? Right.GetHeight() : 0;
+        return  1 + Math.Max(leftHight , rightHight); // Replace this line with the correct return statement(s)
     }
 }
